@@ -1,0 +1,58 @@
+#labels Featured,Phase-Deploy
+= Introduction =
+*Preliminary instructions.  I'm waiting for approval from the original author before setup.py is committed*
+
+There are a few methods of installing python-money.  You can either download/checkout the project and use *setup.py*.  Or if you've installed [http://www.pip-installer.org/en/latest/index.html pip] you can grab it from [http://pypi.python.org/pypi PyPi] or straight out of the project repository.
+
+* There are currently no published artifacts either here or on PyPi.  The project is available though SVN only for the moment, but I will try and publish something as soon as possible *
+
+== Using setup.py ==
+
+First, either download the latest tarball from the [http://code.google.com/p/python-money/downloads/list download page].
+
+Extract the source with
+{{{
+tar -xzf python-money-XXX.tar.xzf
+}}}
+
+*OR*
+
+Checkout the latest version from the project repository using SVN.
+{{{
+svn checkout http://python-money.googlecode.com/svn/trunk/ python-money-read-only
+}}}
+
+Then cd into the project directory
+{{{
+cd python-money
+}}}
+
+and just run setup.py
+{{{
+python setup.py install
+}}}
+
+== Using pip ==
+
+If you have pip installed your can install from the PyPi repository
+
+{{{
+pip install python-money
+}}}
+
+or if you want the latest version, you can install directly from the project repository
+
+{{{
+pip install svn+http://python-money.googlecode.com/svn/trunk/
+}}}
+
+== Testing your installation ==
+
+Open up a python shell and see you can import python-money classes
+
+{{{
+~$ python
+>>> from money import Money
+>>> Money(6, 'AUD')
+AUD 6.0
+}}}
