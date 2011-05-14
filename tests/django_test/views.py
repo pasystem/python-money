@@ -1,4 +1,4 @@
-from django import newforms as forms
+from django import forms as forms
 from django.shortcuts import render_to_response, get_object_or_404
 from money.contrib.django.forms.fields import MoneyField
 from money import Money
