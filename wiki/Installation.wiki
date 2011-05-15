@@ -1,6 +1,5 @@
 #labels Featured,Phase-Deploy
 = Introduction =
-*Preliminary instructions.  I'm waiting for approval from the original author before setup.py is committed*
 
 There are a few methods of installing python-money.  You can either download/checkout the project and use *setup.py*.  Or if you've installed [http://www.pip-installer.org/en/latest/index.html pip] you can grab it from [http://pypi.python.org/pypi PyPi] or straight out of the project repository.
 
