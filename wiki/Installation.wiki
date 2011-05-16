@@ -16,7 +16,7 @@ tar -xzf python-money-XXX.tar.xzf
 
 Checkout the latest version from the project repository using SVN.
 {{{
-svn checkout http://python-money.googlecode.com/svn/trunk/ python-money-read-only
+svn checkout http://python-money.googlecode.com/svn/trunk/ python-money
 }}}
 
 Then cd into the project directory
