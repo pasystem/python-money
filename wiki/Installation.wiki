@@ -3,8 +3,6 @@
 
 There are a few methods of installing python-money.  You can either download/checkout the project and use *setup.py*.  Or if you've installed [http://www.pip-installer.org/en/latest/index.html pip] you can grab it from [http://pypi.python.org/pypi PyPi] or straight out of the project repository.
 
-* There are currently no published artifacts either here or on PyPi.  The project is available though SVN only for the moment, but I will try and publish something as soon as possible *
-
 == Using setup.py ==
 
 First, either download the latest tarball from the [http://code.google.com/p/python-money/downloads/list download page].
