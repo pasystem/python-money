@@ -1,6 +1,6 @@
 from django.db import models
 from django.utils.encoding import smart_unicode
-from money.contrib.django import forms
+from money.django import forms
 from money import Money 
 
 __all__ = ('MoneyField', 'currency_field_name', 'NotSupportedLookup')

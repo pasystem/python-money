@@ -6,7 +6,7 @@ def read(fname):
 
 setup(
 	name = "python-money",
-	version = "0.5",
+	version = "0.6",
 	author = "Jordan Dimov",
 	author_email = "s3x3y1@gmail.com",
 	maintainer = "Ben Coughlan",
