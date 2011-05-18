@@ -1,10 +1,15 @@
 from django import forms as forms
 from money import Money, CURRENCY
 from decimal import Decimal
+from django.conf import settings
 
 __all__ = ('InputMoneyWidget', 'CurrencySelect',)
 
-CURRENCY_CHOICES = ((c.code, c.name) for i, c in CURRENCY.items() if c.code != 'XXX')
+if hasattr(settings, 'MONEY_CURRENCY_CHOICES'):
+    CURRENCY_CHOICES = ((c.code, c.name) for i, c in CURRENCY.items() if c.code in settings.MONEY_CURRENCY_CHOICES)
+else:    
+    CURRENCY_CHOICES = ((c.code, c.name) for i, c in CURRENCY.items() if c.code != 'XXX')
+
 
 class CurrencySelect(forms.Select):
     def __init__(self, attrs=None, choices=CURRENCY_CHOICES):
