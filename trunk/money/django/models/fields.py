@@ -1,12 +1,11 @@
 from django.db import models
 from django.utils.encoding import smart_unicode
 from money.django import forms
-from money import Money 
+from money import Money
 
 __all__ = ('MoneyField', 'currency_field_name', 'NotSupportedLookup')
 
 currency_field_name = lambda name: "%s_currency" % name
-
 
 SUPPORTED_LOOKUPS = ('exact', 'lt', 'gt', 'lte', 'gte')
 
@@ -41,7 +40,6 @@ class MoneyFieldProxy(object):
 
 
 class MoneyField(models.DecimalField):
-    
     def __init__(self, verbose_name=None, name=None, 
                  max_digits=None, decimal_places=None,
                  default=None, default_currency=None, **kwargs):
@@ -66,17 +64,17 @@ class MoneyField(models.DecimalField):
         if not hasattr(cls, '_default_manager'):
             from managers import MoneyManager
             cls.add_to_class('objects', MoneyManager())
-        
-    def get_db_prep_save(self, value):
+
+    def get_db_prep_save(self, value, connection):
         if isinstance(value, Money):
             value = value.amount  
-        return super(MoneyField, self).get_db_prep_save(value)
+        return super(MoneyField, self).get_db_prep_save(value, connection=connection)
     
-    def get_db_prep_lookup(self, lookup_type, value):
+    def get_db_prep_lookup(self, lookup_type, value, connection, prepared=False):
         if not lookup_type in SUPPORTED_LOOKUPS: 
             raise NotSupportedLookup(lookup_type)
-        value = self.get_db_prep_save(value)
-        return super(MoneyField, self).get_db_prep_lookup(lookup_type, value)
+        value = self.get_db_prep_save(value, connection)
+        return super(MoneyField, self).get_db_prep_lookup(lookup_type, value, connection, prepared)
     
     def get_default(self):
         if isinstance(self.default, Money):
