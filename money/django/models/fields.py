@@ -40,6 +40,9 @@ class MoneyFieldProxy(object):
 
 
 class MoneyField(models.DecimalField):
+
+    description = "A Monetary value"
+
     def __init__(self, verbose_name=None, name=None, 
                  max_digits=None, decimal_places=None,
                  default=None, default_currency=None, **kwargs):
@@ -47,10 +50,10 @@ class MoneyField(models.DecimalField):
             self.default_currency = default.currency
         self.default_currency = default_currency
         super(MoneyField, self).__init__(verbose_name, name, max_digits, decimal_places, default=default, **kwargs)
-    
-    def get_internal_type(self): 
-         return "DecimalField"
-     
+
+    def get_internal_type(self):
+        return "DecimalField"
+
     def contribute_to_class(self, cls, name):
         c_field_name = currency_field_name(name)
         c_field = models.CharField(max_length=3, default=self.default_currency, editable=False)
@@ -74,7 +77,7 @@ class MoneyField(models.DecimalField):
         if not lookup_type in SUPPORTED_LOOKUPS: 
             raise NotSupportedLookup(lookup_type)
         value = self.get_db_prep_save(value, connection)
-        return super(MoneyField, self).get_db_prep_lookup(lookup_type, value, connection, prepared)
+        return super(MoneyField, self).get_db_prep_lookup(lookup_type, value, connection=connection, prepared=prepared)
     
     def get_default(self):
         if isinstance(self.default, Money):
