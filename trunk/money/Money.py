@@ -95,6 +95,8 @@ class Money:
 			raise TypeError, 'invalid monetary operation'
 		else:
 			return Money(amount = Decimal(str(other)) * self.amount / 100, currency = self.currency)
+	def __float__(self):
+		return self.amount.__float__()
 	def convert_to_default(self):
 		return Money(amount = self.amount * self.currency.exchange_rate, currency=DEFAULT_CURRENCY)
 	def convert_to(self, currency):
@@ -112,6 +114,8 @@ class Money:
 	# Override comparison operators
 	#
 	def __eq__(self, other):
+		if other is None:
+			return False
 		if isinstance(other, Money):
 			return (self.amount == other.amount) and (self.currency == other.currency)
 		return (self.amount == Decimal(str(other)))
@@ -140,6 +144,8 @@ class Money:
 		return self < other or self == other
 	def __ge__(self, other):
 		return self > other or self == other
+	def __hash__(self):
+		return self.__repr__
 
 	#
 	# Miscellaneous helper methods
